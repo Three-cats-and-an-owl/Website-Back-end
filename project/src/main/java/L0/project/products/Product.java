@@ -18,7 +18,7 @@ import java.util.List;
 
 public class Product {
     @Id
-    private ObjectId _id;
+    private ObjectId id;
     private String name;
     private String description;
     private String category;
@@ -30,9 +30,10 @@ public class Product {
     private List<String> images;
     private List<String> reviews;
     
-    public Product(ObjectId _id, String name, String description, String category, String price, String image, List<String> tags, 
+    // Constructor
+    public Product(ObjectId id, String name, String description, String category, String price, String image, List<String> tags, 
     List<String> colors, List<String> sizes, List<String> images, List<String> reviews) {
-        this._id = _id;
+        this.id = id; //This is the ID value being passed into ProductRepository to locate our product.
         this.name = name;
         this.description = description;
         this.category = category;
