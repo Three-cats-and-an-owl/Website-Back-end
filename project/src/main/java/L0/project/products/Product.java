@@ -9,7 +9,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.List;
+import java.util.*;
 
 @Document(collection = "products")
 @Data
@@ -17,6 +17,7 @@ import java.util.List;
 @NoArgsConstructor
 
 public class Product {
+    
     @Id
     private ObjectId id;
     private String name;
@@ -31,7 +32,7 @@ public class Product {
     private List<String> reviews;
     
     // Constructor
-    public Product(ObjectId id, String name, String description, String category, String price, String image, List<String> tags, 
+    public Product (ObjectId id, String name, String description, String category, String price, String image, List<String> tags, 
     List<String> colors, List<String> sizes, List<String> images, List<String> reviews) {
         this.id = id; //This is the ID value being passed into ProductRepository to locate our product.
         this.name = name;
