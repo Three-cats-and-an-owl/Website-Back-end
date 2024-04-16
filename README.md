@@ -1,2 +1,6 @@
-# Website
-# A software that performs a simple E-commerce website for a “abc” sales company. The functions include searching for an item, order, including shipping methods; pay for an item using a credit card, etc. Confirmation of the purchase should be sent to the user’s email address. 
+## AABB Skin
+
+### This is the backend portion of AABB Skin. The code is run through a Spring Boot server and handles all HTTP requests made by the frontend. It is connected to a MongoDB database.
+
+### AABB Skin has capabilities for product searching, ordering, shipping and payment.
+

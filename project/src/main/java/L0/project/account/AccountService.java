@@ -17,10 +17,13 @@ public class AccountService {
     }
 
     public Optional<Account> getAccountById(ObjectId id) {
-        return accountRepository.findById(id);
+        return accountRepository.findById(id.toString());
     }
 
     public Account createAccount(Account account) {
+        if (accountRepository.existsByEmail(account.getEmail())) {
+            throw new IllegalArgumentException("An account with this email already exists.");
+        }
         return accountRepository.save(account);
     }
 

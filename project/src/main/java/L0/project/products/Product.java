@@ -17,7 +17,6 @@ import java.util.*;
 @NoArgsConstructor
 
 public class Product {
-    
     @Id
     private ObjectId id;
     private String name;
@@ -32,7 +31,7 @@ public class Product {
     private List<String> reviews;
     
     // Constructor
-    public Product (ObjectId id, String name, String description, String category, String price, String image, List<String> tags, 
+    public Product(ObjectId id, String name, String description, String category, String price, String image, List<String> tags, 
     List<String> colors, List<String> sizes, List<String> images, List<String> reviews) {
         this.id = id; //This is the ID value being passed into ProductRepository to locate our product.
         this.name = name;
