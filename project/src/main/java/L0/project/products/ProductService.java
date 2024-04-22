@@ -27,8 +27,8 @@ public class ProductService {
         return productRepository.findById(id);
     }
 
-    public Optional<Product> getProductByName(String product_name) {
-        return productRepository.findByProductName(product_name);
+    public List<Product> getProductByName(String productName) {
+        return productRepository.findByProductNameContainingIgnoreCase(productName);
     }
 
     //Update

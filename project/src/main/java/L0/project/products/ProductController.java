@@ -16,20 +16,19 @@ public class ProductController {
     public ProductController(ProductService productService) {
         this.productService = productService;   
     }
-
+    @GetMapping
+    public ResponseEntity<List<Product>> getProducts() {
+        List<Product> products = productService.getProducts();
+        return ResponseEntity.ok(products);
+    }
     @GetMapping("/{name}")
-    public ResponseEntity<Product> getProduct(@PathVariable String product_name) {
-        Optional<Product> optionalProduct = productService.getProductByName(product_name);
-        if (optionalProduct.isPresent()) {
-            Product product = optionalProduct.get();
-            return ResponseEntity.ok(product);
+    public ResponseEntity<List<Product>> getProducts(@PathVariable String name) {
+        List<Product> products = productService.getProductByName(name);
+        if (!products.isEmpty()) {
+            return ResponseEntity.ok(products);
         } else {
             return ResponseEntity.notFound().build();
         }
     }
     
 }
-    // Endpoints to create, read, update, and delete products...Its our API for products. :D
-    // Its important to note that this code is not the same as ProductService. This file
-    // is the entry point for our API and will handle HTTP requests and responses. It will call the methods
-    // from the ProductService file to perform the CRUD operations.

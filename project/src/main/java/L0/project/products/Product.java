@@ -18,19 +18,19 @@ public class Product {
     @Id
     private ObjectId id;
     @Field("product_name")
-    private String product_name;
-    private String product_url;
-    private String product_type;
-    private List<String> clean_ingredients;
+    private String productName;
+    private String productUrl;
+    private String productType;
+    private List<String> cleanIngredients;
     private String price;
     
     // Constructor
     public Product(ObjectId id, String product_name, String product_url, String product_type, List<String> clean_ingredients, String price){
         this.id = id; //This is the ID value being passed into ProductRepository to locate our product.
-        this.product_name = product_name;
-        this.product_url = product_url;
-        this.product_type = product_type;
-        this.clean_ingredients = clean_ingredients;
+        this.productName = product_name;
+        this.productUrl = product_url;
+        this.productType = product_type;
+        this.cleanIngredients = clean_ingredients;
         this.price = price;
 
     }
