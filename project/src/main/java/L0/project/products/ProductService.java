@@ -13,7 +13,6 @@ public class ProductService {
     public ProductService(ProductRepository productRepository) {
         this.productRepository = productRepository;
     }
-
     //Create
     public Product createProduct(Product product) {
         return productRepository.save(product);
@@ -41,6 +40,4 @@ public class ProductService {
     public void deleteProduct(String id) {
         productRepository.deleteById(id);
     }
-
-
 }

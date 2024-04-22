@@ -1,5 +1,6 @@
 package L0.project.products;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -8,7 +9,9 @@ import java.util.*;
 @RestController
 @RequestMapping("/api/v1/products")
 public class ProductController {
-    private final ProductService productService;
+
+    @Autowired
+    private ProductService productService;
 
     public ProductController(ProductService productService) {
         this.productService = productService;   

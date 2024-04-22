@@ -3,6 +3,8 @@ package L0.project.products;
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.Field;
+
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -11,10 +13,11 @@ import java.util.*;
 @Document(collection = "products")
 @Data
 @NoArgsConstructor
-
 public class Product {
+
     @Id
     private ObjectId id;
+    @Field("product_name")
     private String product_name;
     private String product_url;
     private String product_type;
