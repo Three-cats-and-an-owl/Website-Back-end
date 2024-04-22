@@ -2,6 +2,8 @@ package L0.project.products;
 
 import java.util.List;
 import java.util.Optional;
+
+import org.bson.types.ObjectId;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -22,8 +24,12 @@ public class ProductService {
         return productRepository.findAll();
     }
     
-    public Optional<Product> getProductById(String id) {
+    public Optional<Product> getProductById(ObjectId id) {
         return productRepository.findById(id);
+    }
+
+    public Optional<Product> getProductByName(String product_name) {
+        return productRepository.findByProductName(product_name);
     }
 
     //Update

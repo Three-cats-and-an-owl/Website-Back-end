@@ -9,4 +9,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface ProductRepository extends MongoRepository<Product, String> {
     Optional<Product> findById(ObjectId id); //This is a method that will allow us to find a product by its id
+    Optional<Product> findByProductName(String product_name); //This is a method that will allow us to find a product by its name
 }
