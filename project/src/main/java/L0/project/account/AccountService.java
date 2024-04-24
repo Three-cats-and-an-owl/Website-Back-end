@@ -1,39 +1,44 @@
 package L0.project.account;
 
-import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
-import java.util.*;
+import org.bson.types.ObjectId;
 
 @Service
 public class AccountService {
 
     @Autowired
-    private AccountRepository accountRepository;    
+    private AccountRepository accountRepository;
 
-    public List<Account> getAccounts() {
-        return accountRepository.findAll();
-    }
-
-    public Optional<Account> getAccountById(ObjectId id) {
-        return accountRepository.findById(id.toString());
-    }
+    @Autowired
+    private BCryptPasswordEncoder bCryptPasswordEncoder;
 
     public Account createAccount(Account account) {
-        if (accountRepository.existsByEmail(account.getEmail())) {
-            throw new IllegalArgumentException("An account with this email already exists.");
+        account.setPassword(bCryptPasswordEncoder.encode(account.getPassword()));
+        return accountRepository.save(account);
+    }
+
+    public Account getAccount(ObjectId userId) {
+        return accountRepository.findByUserId(userId).orElse(null);
+    }
+
+    public Account updateAccount(ObjectId userId, Account accountDetails) {
+        Account account = getAccount(userId);
+        if(account != null) {
+            account.setUsername(accountDetails.getUsername());
+            account.setPassword(bCryptPasswordEncoder.encode(accountDetails.getPassword()));
+            account.setEmail(accountDetails.getEmail());
+            account.setAddress(accountDetails.getAddress());
+            account.setPhone(accountDetails.getPhone());
+            account.setRole(accountDetails.getRole());
+            accountRepository.save(account);
         }
-        return accountRepository.save(account);
+        return account;
     }
 
-    public Account updateAccount(ObjectId id, Account account) {
-        return accountRepository.save(account);
+    public void deleteAccount(ObjectId userId) {
+        accountRepository.deleteById(userId.toString());
     }
-
-    public void deleteAccount(String id) {
-        accountRepository.deleteById(id);
-    }
-
-
 }

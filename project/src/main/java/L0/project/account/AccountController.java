@@ -1,38 +1,33 @@
 package L0.project.account;
 
-import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.*;
+import org.bson.types.ObjectId;
 
 @RestController
 @RequestMapping("/api/v1/accounts")
 public class AccountController {
 
     @Autowired
-    private AccountService AccountService;
-
-    @GetMapping
-    public List<Account> getAccounts() {
-        return AccountService.getAccounts();
-    }
+    private AccountService accountService;
 
     @PostMapping
-    public ResponseEntity<Account> createAccount(@RequestBody Account account) {
-        return ResponseEntity.ok().body(AccountService.createAccount(account));
+    public Account createAccount(@RequestBody Account account) {
+        return accountService.createAccount(account);
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<Account> getAccountById(@PathVariable ObjectId id) {
-        return AccountService.getAccountById(id)
-                .map(account -> ResponseEntity.ok().body(account))
-                .orElseGet(() -> ResponseEntity.notFound().build());
+    @GetMapping("/{userId}")
+    public Account getAccount(@PathVariable ObjectId userId) {
+        return accountService.getAccount(userId);
     }
-    @ExceptionHandler
-    public ResponseEntity<String> handleException(Exception e) {
-        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
+
+    @PutMapping("/{userId}")
+    public Account updateAccount(@PathVariable ObjectId userId, @RequestBody Account accountDetails) {
+        return accountService.updateAccount(userId, accountDetails);
+    }
+
+    @DeleteMapping("/{userId}")
+    public void deleteAccount(@PathVariable ObjectId userId) {
+        accountService.deleteAccount(userId);
     }
 }
