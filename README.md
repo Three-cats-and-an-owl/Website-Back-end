@@ -12,11 +12,11 @@
 ### Follow these simple steps below to ensure the back end is running:
 - Clone the repository to your local machine: ```git clone https://github.com/joselclee/Website-Back-end.git```.
 - Under ```project/src/main/resources```, **create** a new file called **.env**. This is your credential needed to connect to the MongoDB database. Since this is a project, Andre Lee's credential will be provided to avoid 3rd party issues.
-- Paste ```
-MONGO_DATABASE="productsdb" </br>
-MONGO_USER="alee" </br>
-MONGO_PASSWORD="nvCBJgdHI9JdSGxF" </br>
-MONGO_CLUSTER="products.aqu9rqe.mongodb.net/" </br> ``` Into the **.env** file.
+- Paste </br>
+```MONGO_DATABASE="productsdb"``` </br>
+```MONGO_USER="alee"``` </br>
+```MONGO_PASSWORD="nvCBJgdHI9JdSGxF"```</br>
+```MONGO_CLUSTER="products.aqu9rqe.mongodb.net/" ```</br> Into the **.env** file.
 - Under project/src/main/java/L0/project, <b>Run</b> ProjectApplication.java
 - Open your browser of choice and navigate to ``` https://localhost:8080/```. It should display a whitelabel error code. Ignore this- we are simply validating that the endpoints are capable of recieving HTTP requests.
 - Once you have confirmed the above, start the Front End.
