@@ -2,9 +2,14 @@ package L0.project.products;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.bson.types.ObjectId;
 import org.springframework.stereotype.Service;
+
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 
 @Service
 public class ProductService {
@@ -12,6 +17,11 @@ public class ProductService {
 
     public ProductService(ProductRepository productRepository) {
         this.productRepository = productRepository;
+    }
+
+    public Page<Product> getProducts(int page, int limit) {
+        Pageable pageable = PageRequest.of(page, limit);
+        return productRepository.findAll(pageable);
     }
     //Create
     public Product createProduct(Product product) {
@@ -39,5 +49,8 @@ public class ProductService {
     //Delete
     public void deleteProduct(String id) {
         productRepository.deleteById(id);
+    }
+    public List<Product> getProducts(int limit) {
+        return productRepository.findAll().stream().limit(limit).collect(Collectors.toList());
     }
 }

@@ -1,6 +1,7 @@
 package L0.project.products;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,9 +18,9 @@ public class ProductController {
         this.productService = productService;   
     }
     @GetMapping
-    public ResponseEntity<List<Product>> getProducts() {
-        List<Product> products = productService.getProducts();
-        return ResponseEntity.ok(products);
+    public List<Product> getProducts(@RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "50") int limit) {
+        Page<Product> productPage = productService.getProducts(page, limit);
+        return productPage.getContent();
     }
     @GetMapping("/{name}")
     public ResponseEntity<List<Product>> getProducts(@PathVariable String name) {
