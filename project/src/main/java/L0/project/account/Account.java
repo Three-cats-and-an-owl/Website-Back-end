@@ -4,6 +4,9 @@ import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class Account {
     @Id
     private ObjectId userId;
@@ -15,10 +18,11 @@ public class Account {
     private String email;
     private String address;
     private String phone;
+    private String birthday;
 
     private String role;
 
-    public Account (ObjectId userId, String username, String firstName, String lastName, String password, String email, String address, String phone, String role) {
+    public Account (ObjectId userId, String username, String firstName, String lastName, String password, String email, String address, String phone, String birthday, String role) {
         this.userId = userId; //Unique identifier for the account
         this.username = username;
         this.firstName = firstName;
@@ -27,6 +31,7 @@ public class Account {
         this.email = email;
         this.address = address;
         this.phone = phone;
+        this.birthday = birthday;
         
         this.role = role;
     }
@@ -52,6 +57,9 @@ public class Account {
     }
     public String getPhone() {
         return this.phone;
+    }
+    public String getBirthday() {
+        return this.birthday;
     }
     public String getRole() {
         return this.role;

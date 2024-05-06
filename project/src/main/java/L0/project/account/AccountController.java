@@ -54,6 +54,17 @@ public class AccountController {
                 .map(account -> ResponseEntity.ok().body(account))
                 .orElseGet(() -> ResponseEntity.notFound().build());
     }
+    @GetMapping("/getByEmail{email}")
+    public ResponseEntity<Account> getAccountByEmail(@PathVariable String email) {
+        return AccountService.getAccountByEmail(email)
+                .map(account -> ResponseEntity.ok().body(account))
+                .orElseGet(() -> ResponseEntity.notFound().build());
+    }
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteAccount(@PathVariable String id) {
+        AccountService.deleteAccount(id);
+        return ResponseEntity.noContent().build();
+    }
     @ExceptionHandler
     public ResponseEntity<String> handleException(Exception e) {
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
