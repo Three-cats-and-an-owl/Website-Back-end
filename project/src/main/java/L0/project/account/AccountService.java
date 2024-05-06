@@ -35,5 +35,9 @@ public class AccountService {
         accountRepository.deleteById(id);
     }
 
+    public Optional<Account> getAccountByEmail(String email) {
+        return accountRepository.findByEmail(email);
+    }
+
 
 }

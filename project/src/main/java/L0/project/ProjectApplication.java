@@ -20,13 +20,12 @@ public class ProjectApplication {
 	public WebMvcConfigurer corsConfigurer() {
 		return new WebMvcConfigurer() {
 			@Override
-			public void addCorsMappings(@NonNull CorsRegistry registry) {
-				registry.addMapping("/**")
-				.allowedOrigins("*")
-				.allowedMethods("*")
-				.allowedHeaders("*")
-				.allowCredentials(false).maxAge(3600);
-			}
+    		public void addCorsMappings(@NonNull CorsRegistry registry) {
+        		registry.addMapping("/api/**")
+                		.allowedOrigins("http://localhost:3000")
+                		.allowedMethods("GET", "POST", "PUT", "DELETE", "HEAD")
+                		.allowCredentials(true);
+    		}
 		};
 	}
 }

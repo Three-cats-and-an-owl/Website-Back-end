@@ -9,4 +9,7 @@ import org.springframework.stereotype.Repository;
 public interface AccountRepository extends MongoRepository<Account, String>{
     Optional<Account> findByUserId(ObjectId userId);
     boolean existsByEmail(String email);
+
+    Optional<Account> findByEmail(String email);
 }
+
